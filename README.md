@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Automated Gong Call Summarization & Notion CRM Updates for Vercel SEs
 
-## Getting Started
+Automate the capture, summarization, and organization of Gong sales call data for Vercel's Sales Engineers (SEs). This project ensures every customer interaction is documented in a consistent, actionable, and easily accessible format within Notion, and provides SEs with daily digests of critical updates.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Automated Gong Call Ingestion:** Retrieve Gong call transcripts (mock data for now; future: real Gong or Snowflake integration).
+- **Template-Driven Summarization:** Summarizes each call using the SE Notion templates, ensuring all required sections are filled and formatted.
+- **Notion CRM Integration:** Creates or updates customer pages in the SE AMER OPPS Notion database, preserving historical data and maintaining logical separation between calls.
+- **Daily Digest (Planned):** Will send daily digests to each SE, summarizing updated notes and highlighting critical items from recent calls.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Language:** TypeScript
+- **APIs:** Notion API (via Smithery SDK, Model Context Protocol)
+- **Mock Data:** Simulated Gong call transcripts
+- **Planned:** Gong API integration, digest delivery (email, Slack, Notion, etc.)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⚙️ Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-## Deploy on Vercel
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Open your browser:**  
+   Visit [http://localhost:3000](http://localhost:3000) to see the app.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🧑‍💻 Developer Setup
+
+To run or test this project, you will need to:
+
+- **Obtain a SmitheryAI API Key:**
+  - Sign up at [Smithery](https://smithery.ai/) and generate an API key.
+  - Set this key in your environment (e.g., via `.env.local` as `SMITHERY_API_KEY=your-key`).
+
+- **Update the Notion Database ID:**
+  - In `lib/agent.ts`, update the prompt or configuration to use the Notion database ID you want to test against.
+  - This ensures the agent writes to the correct Notion workspace/database.
+
+- **Create a Notion Template:**
+  - In your Notion database, create a template page formatted as `SE-[name]-Template` (e.g., `SE-Alice-Template`).
+  - The agent uses this template to structure call summaries.
+
+---
+
+## 📅 Workflow Overview
+
+1. **Ingest Call Data:** Receives Gong call data (mocked for now), extracts company and participants.
+2. **Summarize:** Fills in the SE’s Notion template, using "N/A" for missing info.
+3. **Update Notion:** Checks for an existing customer page, updates or creates as needed.
+4. **(Planned) Daily Digest:** Will generate and deliver daily digests for SEs.
+
+---
+
+## 🤝 Contributing
+
+Contributions, suggestions, and feedback are welcome! Please open an issue or pull request.
+
+---
+
+## 📄 License
+
+[MIT](LICENSE) (or your preferred license)
+
+---
+
+## 🙏 Acknowledgements
+
+- [Next.js](https://nextjs.org/)
+- [Smithery SDK](https://smithery.ai/)
