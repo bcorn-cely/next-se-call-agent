@@ -7,7 +7,7 @@ import mcpConfig from "@/lib/config";
 import { systemPrompt } from "@/lib/prompts/feature-request-prompt";
 
 
-export const maxDuration = 900;
+export const maxDuration = 800;
 
 
 export async function POST(req: NextRequest) {
