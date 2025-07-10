@@ -71,10 +71,14 @@ type GongCall = {
   Brandon Corn: You can keep all of that. Vercel integrates with Jenkins through our CLI or API. You can trigger our deployments as part of your existing pipeline, or we can deploy automatically on git pushes and you keep Jenkins for your testing and notifications.
   
   Jennifer Walsh: What's the monitoring story? We use DataDog pretty heavily for APM and logging.
-  
-  Brandon Corn: We integrate well with DataDog. You'll get our built-in Web Vitals and deployment analytics, plus you can continue sending custom metrics to DataDog. We also have webhook integrations for deployment events.
-  
-  David Kim: Let's talk numbers. What would this cost for our scale?
+
+Brandon Corn: We integrate well with DataDog. You'll get our built-in Web Vitals and deployment analytics, plus you can continue sending custom metrics to DataDog. We also have webhook integrations for deployment events.
+
+David Kim: Speaking of monitoring, we've been having issues with API latency spikes that we don't catch until they've already impacted users. We really need anomaly alerts tied to observability metrics like latency for particular APIs. Right now we have to manually check DataDog dashboards, but by the time we see the problem, it's too late. Is there any way Vercel could provide automated anomaly detection and alerting for API performance metrics?
+
+Brandon Corn: That's a great point, David. Automated anomaly detection for API performance is definitely something we're hearing more about from customers. I'll take this back to our product team and see what we can do. In the meantime, we can set up webhook alerts based on your DataDog metrics that would trigger when latency exceeds certain thresholds, and we can also help you configure custom monitoring dashboards in Vercel Analytics to track API performance trends.
+
+David Kim: Let's talk numbers. What would this cost for our scale?
   
   Sarah Chen: Based on what you've shared - 15 applications, 8 developers, your traffic volume - you'd likely fit on our Pro plan. That's $20 per seat monthly, so $160 for your team, plus usage-based pricing for bandwidth and function invocations.
   

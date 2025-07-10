@@ -4,7 +4,7 @@ import { generateText, experimental_createMCPClient as createMcpClient, generate
 import { openai } from "@ai-sdk/openai";
 // import { anthropic } from "@ai-sdk/anthropic";
 import mcpConfig from "@/lib/config";
-import { systemPrompt } from "@/lib/prompts/summarize-calls";
+import { systemPrompt } from "@/lib/prompts/feature-request-prompt";
 
 
 export const maxDuration = 360;
@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
         if (NoSuchToolError.isInstance(error)) {
           return null; // do not attempt to fix invalid tool names
         }
-    
+        console.log('inside repair tool');
         const tool = tools[toolCall.toolName as keyof typeof tools];
     
         const { object: repairedArgs } = await generateObject({
@@ -90,9 +90,9 @@ export async function POST(req: NextRequest) {
     });
 
     notionClient?.close();
-
+    console.log('results ', result.response)
     messages.push(...result.response.messages)
-    console.log('messages  ', messages);
+
     return NextResponse.json(
         { totalSteps: result.steps.length },
         { status: 200 }
